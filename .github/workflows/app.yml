@@ -1,0 +1,25 @@
+name: Application CI/CD
+on:
+  push:
+    paths:
+      - 'app/**'
+jobs:
+  app-lifecycle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+      - name: Test Go app
+        working-directory: ./app
+        run: make vet && make lint make test
+      - name: Build Go app
+        working-directory: ./app
+        run: make build
+      - name: Upload app artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: app
+          path: ./app/app-build-$GITHUB_RUN_ID
