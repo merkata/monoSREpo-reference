@@ -11,15 +11,20 @@ import (
 )
 
 var (
-	opsProcessed = promauto.NewCounter(prometheus.CounterOpts{
-		Name: "myapp_processed_ops_total",
-		Help: "The total number of processed events",
+	homePageHits = promauto.NewCounter(prometheus.CounterOpts{
+		Name: "myapp_processed_home_page_total",
+		Help: "The total number of GETs to the home page",
+	})
+	pageNotFound = promauto.NewCounter(prometheus.CounterOpts{
+		Name: "myapp_page_not_found_total",
+		Help: "The total number of GETs against non existing pages (routes)",
 	})
 )
 
 func home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
+		pageNotFound.Inc()
 		return
 	}
 
@@ -39,7 +44,9 @@ func home(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err.Error())
 		http.Error(w, "Internal Server Error", 500)
+		return
 	}
+	homePageHits.Inc()
 }
 
 func main() {
