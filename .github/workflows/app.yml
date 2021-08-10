@@ -9,9 +9,10 @@ on:
       - main
     # if something has changed under this directory
     paths:
-      - "app/**"
+      - 'app/**'
 jobs:
-  app-lifecycle:
+  test-build-deploy:
+    name: App lifecycle
     runs-on: ubuntu-latest
     steps:
       - name: checkout master
