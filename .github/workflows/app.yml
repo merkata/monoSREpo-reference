@@ -11,8 +11,8 @@ on:
     paths:
       - 'app/**'
 jobs:
-  test-build-deploy:
-    name: App lifecycle
+  build:
+    name: App build
     runs-on: ubuntu-latest
     steps:
       - name: checkout master
