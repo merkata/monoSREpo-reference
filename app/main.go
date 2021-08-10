@@ -4,6 +4,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func home(w http.ResponseWriter, r *http.Request) {
@@ -34,6 +36,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", home)
+	mux.HandleFunc("/metrics", promhttp.Handler())
 
 	log.Println("Starting server on :4000")
 	err := http.ListenAndServe(":4000", mux)
