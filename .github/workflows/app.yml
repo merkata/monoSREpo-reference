@@ -1,13 +1,21 @@
 name: Application CI/CD
 on:
+  # enable manual trigger via button in GitHub actions
+  workflow_dispatch:
+  # enable auto trigger based on path and branch
   push:
+    # for main branch
+    branches:
+      - main
+    # if something has changed under this directory
     paths:
-    - "app/**"
+      - "app/**"
 jobs:
   app-lifecycle:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: checkout master
+        uses: actions/checkout@v2
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
@@ -18,7 +26,7 @@ jobs:
       - name: Build Go app
         working-directory: ./app
         run: make build
-      - name: Upload app artifact
+      - name: Upload Go app artifact
         uses: actions/upload-artifact@v2
         with:
           name: app
