@@ -19,6 +19,10 @@ var (
 		Name: "myapp_page_not_found_total",
 		Help: "The total number of GETs against non existing pages (routes)",
 	})
+	internalServerError = promauto.NewCounter(prometheus.CounterOpts{
+		Name: "myapp_internal_server_error_total",
+		Help: "The total number of http 500 responses",
+	})
 )
 
 func home(w http.ResponseWriter, r *http.Request) {
@@ -37,6 +41,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err.Error())
 		http.Error(w, "Internal Server Error", 500)
+		internalServerError.Inc()
 		return
 	}
 
@@ -44,6 +49,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err.Error())
 		http.Error(w, "Internal Server Error", 500)
+		internalServerError.Inc()
 		return
 	}
 	homePageHits.Inc()
