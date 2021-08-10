@@ -14,7 +14,7 @@ jobs:
           go-version: 1.16
       - name: Test Go app
         working-directory: ./app
-        run: make vet && make lint make test
+        run: make tools && make vet && make lint make test
       - name: Build Go app
         working-directory: ./app
         run: make build
