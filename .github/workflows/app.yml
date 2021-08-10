@@ -2,7 +2,7 @@ name: Application CI/CD
 on:
   push:
     paths:
-      - 'app/**'
+    - "app/**"
 jobs:
   app-lifecycle:
     runs-on: ubuntu-latest
