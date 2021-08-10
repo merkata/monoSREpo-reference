@@ -17,18 +17,11 @@ jobs:
     steps:
       - name: checkout master
         uses: actions/checkout@v2
-      - name: Set up Go
+      - name: set up Go
         uses: actions/setup-go@v2
         with:
           go-version: 1.16
-      - name: Test Go app
-        working-directory: ./app
-        run: make tools && make vet && make lint make test
-      - name: Build Go app
-        working-directory: ./app
-        run: make build
-      - name: Upload Go app artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: app
-          path: ./app/app-build-$GITHUB_RUN_ID
+      - name: test Go app
+        run: cd app && make tools && make vet && make lint && make test
+      - name: build Go app
+        run: cd app && make build
