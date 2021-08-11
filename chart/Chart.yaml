@@ -1,0 +1,15 @@
+annotations:
+  category: DeveloperTools
+apiVersion: v2
+appVersion: 0.1.0
+description: A sample app for kubernetes to showcase an SRE flow.
+home: https://github.com/merkata/monoSREpo-reference/chart/app
+keywords:
+  - sample-app
+maintainers:
+  - email: mariyan.dimitrov@gmail.com
+    name: Mariyan Dimitrov
+name: app
+sources:
+  - https://github.com/merkata/monoSREpo-reference/app
+version: 0.1.0
