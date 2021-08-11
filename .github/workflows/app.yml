@@ -34,6 +34,6 @@ jobs:
         run: make build
         working-directory: ./app
       - name: Docker Lint
-        uses: docker://hadolint/hadolint
-        run: make docker-lint
-        working-directory: ./app
+        uses: hadolint/hadolint-action@v1.5.0
+        with:
+          dockerfile: ./app/Dockerfile
