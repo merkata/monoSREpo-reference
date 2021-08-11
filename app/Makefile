@@ -12,7 +12,7 @@ build:
     ifdef GITHUB_RUN_ID
 	go build -o app-build-${GITHUB_RUN_ID} ${LDFLAGS}
     else
-	go build -o bin/app ${LDFLAGS}
+	go build -o app ${LDFLAGS}
     endif
 
 tools:
