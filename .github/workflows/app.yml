@@ -12,7 +12,7 @@ on:
       - 'app/**'
 jobs:
   build:
-    name: App test and build
+    name: Test Build Dockerize
     runs-on: ubuntu-latest
     steps:
       - name: Checkout master
@@ -22,14 +22,18 @@ jobs:
         with:
           go-version: 1.16
           working-directory: ./app
-      - name: Lint Go app
+      - name: Lint
         uses: golangci/golangci-lint-action@v2
         with:
           version: v2.5.2
           working-directory: ./app
-      - name: Test Go app
+      - name: Test
         run: make tools && make vet && make test
         working-directory: ./app
-      - name: Build Go app
+      - name: Build
         run: make build
+        working-directory: ./app
+      - name: Docker Lint
+        uses: docker://hadolint/hadolint
+        run: make docker-lint
         working-directory: ./app
