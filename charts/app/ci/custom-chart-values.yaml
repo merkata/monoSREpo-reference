@@ -1,3 +1,4 @@
+# Used for ct tests
 service:
   type: NodePort
   interalPort: 4000
