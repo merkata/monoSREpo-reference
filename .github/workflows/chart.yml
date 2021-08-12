@@ -10,7 +10,7 @@ on:
       - main
     # if something has changed under this directory
     paths:
-      - 'chart/**'
+      - 'charts/**'
 
 jobs:
   lint-test:
