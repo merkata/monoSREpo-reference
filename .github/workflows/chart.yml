@@ -1,4 +1,4 @@
-name: Lint and Test Charts
+name: Chart CI/CD
 
 on:
   # enable manual trigger via button in GitHub actions
@@ -32,6 +32,7 @@ jobs:
 
       - name: Set up chart-testing
         uses: helm/chart-testing-action@v2.1.0
+        config: ct.yml
 
       - name: Run chart-testing (list-changed)
         id: list-changed
@@ -43,6 +44,7 @@ jobs:
 
       - name: Run chart-testing (lint)
         run: ct lint
+        config: ct.yml
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.2.0
@@ -50,3 +52,4 @@ jobs:
 
       - name: Run chart-testing (install)
         run: ct install
+        config: ct.yml
