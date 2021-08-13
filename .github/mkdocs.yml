@@ -1,0 +1,53 @@
+site_name: 'MonoSREpo Reference - opinionated SRE/DevOps practices via a toy app'
+site_author: 'merkata'
+site_url: 'https://merkata.github.io/monoSREpo-reference/'
+repo_name: 'merkata/monoSREpo-reference'
+repo_url: 'https://github.com/merkata/monoSREpo-reference'
+copyright: 'Copyright &copy; merkata 2021 '
+nav:
+- Home:
+  - index.md
+- 'App':
+  - App: app.md
+- 'Charts':
+  - Chart: chart.md
+- 'Dashboards':
+  - Dashboards: dashboards.md
+- 'Infrastructure':
+  - Infrastructure: infrastructure.md
+- 'Inventory':
+  - Inventory: inventory.md
+- 'Docs':
+  - Docs: docs.md
+- 'Installer':
+  - Installer: installer.md
+- 'Workflows':
+  - Workflows: workflows.md
+- about.md
+theme:
+  name: 'material'
+  features:
+    - navigation.instant
+    - navigation.tabs
+  icon:
+    logo: 'fontawesome/solid/file-invoice'
+  font:
+    text: 'Lato'
+    code: 'PT Mono'
+  palette:
+    scheme: slate
+    primary: orange
+    accent: blue
+  highlightjs: true
+  hljs_languages:
+  - yaml
+  - json
+  - bash
+markdown_extensions:
+- toc:
+    permalink: true
+- admonition
+- codehilite:
+    linenums: true
+- pymdownx.details
+- pymdownx.superfences
