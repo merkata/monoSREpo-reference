@@ -8,7 +8,7 @@ keywords:
   - sample-app
 maintainers:
   - email: mariyan.dimitrov@gmail.com
-    name: Mariyan Dimitrov
+    name: merkata
 name: app
 sources:
   - https://github.com/merkata/monoSREpo-reference/app
