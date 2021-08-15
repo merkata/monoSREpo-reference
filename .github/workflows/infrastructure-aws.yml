@@ -17,10 +17,14 @@ jobs:
     steps:
       - name: Checkout master
         uses: actions/checkout@v2
-      - name: Get kapitan
-        run: curl -flLO https://github.com/kapicorp/kapitan/releases/download/v0.29.5/kapitan-linux-amd64
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Set up Kapitan
+        run: pip3 install --user --upgrade kapitan
       - name: Kapitan compile
-        run: chmod a+x ./kapitan-linux-amd64 && ./kapitan-linux-amd64 compile
+        run: kapitan compile
       - uses: actions/upload-artifact@master
         with:
           name: compiled
