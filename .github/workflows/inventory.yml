@@ -17,12 +17,15 @@ jobs:
     steps:
       - name: Checkout master
         uses: actions/checkout@v2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Set up Kapitan
+        run: pip3 install --user --upgrade kapitan
       - name: Kapitan compile
-        uses: docker://kapicorp/kapitan:ci
         run: kapitan compile
       - name: Kapitan lint
-        uses: docker://kapicorp/kapitan:ci
         run: kapitan lint
       - name: Kapitan validate
-        uses: docker://kapicorp/kapitan:ci
         run: kapitan validate
