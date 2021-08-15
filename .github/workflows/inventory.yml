@@ -12,16 +12,17 @@ on:
       - 'inventory/**'
 jobs:
   compile:
-    name: Compile
+    name: Setup
     runs-on: ubuntu-latest
     steps:
       - name: Checkout master
         uses: actions/checkout@v2
-      - name: Get kapitan
-        run: curl -flLO https://github.com/kapicorp/kapitan/releases/download/v0.29.5/kapitan-linux-amd64 && chmod a+x ./kapitan-linux-amd64
       - name: Kapitan compile
-        run: ./kapitan-linux-amd64 compile
+        uses: docker://kapicorp/kapitan:ci
+        run: kapitan compile
       - name: Kapitan lint
-        run: ./kapitan-linux-amd64 lint
+        uses: docker://kapicorp/kapitan:ci
+        run: kapitan lint
       - name: Kapitan validate
-        run: ./kapitan-linux-amd64 validate
+        uses: docker://kapicorp/kapitan:ci
+        run: kapitan validate
