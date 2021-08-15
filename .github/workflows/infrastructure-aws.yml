@@ -1,0 +1,27 @@
+name: Infra AWS CI/CD
+on:
+  # enable manual trigger via button in GitHub actions
+  workflow_dispatch:
+  # enable auto trigger based on path and branch
+  push:
+    # for main branch
+    branches:
+      - main
+    # if something has changed under this directory
+    paths:
+      - 'infrastructure/aws/**'
+jobs:
+  compile:
+    name: Compile infra
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v2
+      - name: Get kapitan
+        run: curl -flLO https://github.com/kapicorp/kapitan/releases/download/v0.29.5/kapitan-linux-amd64
+      - name: Kapitan compile
+        run: chmod a+x ./kapitan-linux-amd64 && ./kapitan-linux-amd64 compile
+      - uses: actions/upload-artifact@master
+        with:
+          name: compiled
+          path: ./compiled
