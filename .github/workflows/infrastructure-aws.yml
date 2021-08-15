@@ -25,3 +25,18 @@ jobs:
         with:
           name: compiled
           path: ./compiled
+  test:
+    name: Test infra
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v2
+      - uses: actions/download-artifact@master
+        with:
+          name: compiled
+          path: ./compiled
+      - name: Get conftest
+        run: curl -flLO https://github.com/open-policy-agent/conftest/releases/download/v0.25.0/conftest_0.25.0_Linux_x86_64.tar.gz && tar xzf conftest_0.25.0_Linux_x86_64.tar.gz && sudo mv conftest /usr/local/bin
+      - name: Test infastructure
+        run: conftest test ../compiled/example/terraform
+        working-directory: ./infrastructure
