@@ -1,0 +1,12 @@
+---
+parameters:
+  infrastructure:
+    modules:
+
+      network:
+        source: "terraform-aws-modules/vpc/aws"
+        version: "3.4.0"
+
+      cluster:
+        source: "terraform-aws-modules/eks/aws"
+        version: "17.1.0"

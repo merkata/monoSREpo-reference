@@ -1,0 +1,9 @@
+---
+classes:
+  - env.dev
+  - cloud.aws
+  - infrastructure.modules
+  - type.terraform
+
+parameters:
+  name: example
