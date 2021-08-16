@@ -1,0 +1,6 @@
+---
+parameters:
+  cluster_name: eks-${name}
+  infrastructure:
+    locals:
+      cluster_name: eks-${name}
