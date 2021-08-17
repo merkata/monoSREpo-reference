@@ -42,4 +42,4 @@ jobs:
         id: checkov
         uses: bridgecrewio/checkov-action@master
         with:
-          directory: .infrastructure/modules/
+          directory: ./infrastructure/modules/
