@@ -30,3 +30,26 @@ jobs:
       - name: Test infastructure
         run: conftest test ../compiled/example/terraform
         working-directory: ./infrastructure
+      - uses: hashicorp/setup-terraform@v1
+        name: Setup terraform
+        with:
+          terraform_version: 0.13.7
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        working-directory: compiled/example/terraform
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+        working-directory: compiled/example/terraform
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -no-color
+        continue-on-error: true
+        working-directory: compiled/example/terraform
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
