@@ -1,6 +1,4 @@
 ---
-classes:
-  - infrastructure.locals
 parameters:
   infrastructure:
     modules:
@@ -31,10 +29,10 @@ parameters:
         version: "17.1.0"
         cluster_name: "${cluster_name}"
         cluster_version: "1.20"
-        subnets: "module.network.private_subnets"
+        subnets: ${infrastructure:modules:network:private_subnets}
         tags:
           Environment: "${env}"
-        vpc_id: "module.network.vpc_id"
+        vpc_id: ${infrastructure:modules:network:name}
         worker_groups:
           - name: "worker-${name}-1"
             instance_type: "t3.small"

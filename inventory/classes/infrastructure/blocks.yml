@@ -1,0 +1,5 @@
+---
+classes:
+  - infrastructure.locals
+  - infrastructure.modules
+  - infrastructure.outputs

@@ -2,7 +2,7 @@
 classes:
   - env.dev
   - cloud.aws
-  - infrastructure.modules
+  - infrastructure.blocks
   - type.terraform
 
 parameters:
