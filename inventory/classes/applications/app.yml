@@ -1,0 +1,6 @@
+---
+parameters:
+  applications:
+    app:
+      app_name: app
+      app_chart_path: ./charts/app
