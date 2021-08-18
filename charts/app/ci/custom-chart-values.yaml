@@ -2,7 +2,8 @@
 service:
   type: NodePort
   interalPort: 4000
-  externalPort: 30000
+  externalPort: 4000
+  port: 4000
 
 replicaCount: 1
 
