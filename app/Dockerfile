@@ -19,6 +19,10 @@ RUN go build -v -o app
 # https://hub.docker.com/_/debian
 # https://docs.docker.com/develop/develop-images/multistage-build/#use-multi-stage-builds
 FROM debian:buster-slim
+
+# Create and change to the app directory.
+WORKDIR /app
+
 RUN set -x && apt-get update && rm -rf /var/lib/apt/lists/*
 
 # Copy the binary to the production image from the builder stage.
@@ -28,4 +32,4 @@ COPY --from=builder /app/app /app/app
 COPY ui /app/ui
 
 # Run the web service on container startup.
-CMD ["/app/app"]
+CMD ["./app"]
