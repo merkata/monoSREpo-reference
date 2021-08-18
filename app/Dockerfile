@@ -12,6 +12,9 @@ RUN go mod download
 # Copy local code to the container image.
 COPY . ./
 
+# Copy ui html templates
+COPY ./ui ./ui/
+
 # Build the binary.
 RUN go build -v -o app
 
