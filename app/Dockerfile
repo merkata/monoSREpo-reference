@@ -12,9 +12,6 @@ RUN go mod download
 # Copy local code to the container image.
 COPY . ./
 
-# Copy ui html templates
-COPY ./ui ./ui/
-
 # Build the binary.
 RUN go build -v -o app
 
@@ -26,6 +23,9 @@ RUN set -x && apt-get update && rm -rf /var/lib/apt/lists/*
 
 # Copy the binary to the production image from the builder stage.
 COPY --from=builder /app/app /app/app
+
+# Copy ui html templates
+COPY ui /app/ui
 
 # Run the web service on container startup.
 CMD ["/app/app"]
