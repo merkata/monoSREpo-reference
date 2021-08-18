@@ -40,6 +40,6 @@ parameters:
 
       app:
         source: "../../../infrastructure/modules/k8s-app"
-        cluster_name: "${cluster_name}"
+        cluster_name: "\\${module.cluster.cluster_id}"
         app_name: "${applications:app:app_name}"
         app_chart_path: "${applications:app:app_chart_path}"

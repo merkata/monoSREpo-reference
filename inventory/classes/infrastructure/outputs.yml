@@ -5,3 +5,6 @@ parameters:
       kubeconfig:
         value: module.cluster.kubeconfig
         sensitive: false
+      cluster_id:
+        value: module.cluster.cluster_id
+        sensitive: false
