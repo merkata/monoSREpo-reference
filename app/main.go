@@ -25,6 +25,10 @@ var (
 	})
 )
 
+func health(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(200)
+}
+
 func home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
@@ -58,6 +62,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", home)
+	mux.HandleFunc("/healthz", health)
 	mux.Handle("/metrics", promhttp.Handler())
 
 	log.Println("Starting server on :4000")
