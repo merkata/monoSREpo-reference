@@ -38,8 +38,8 @@ parameters:
             instance_type: "t3.small"
             asg_desired_capacity: 2
 
-      k8s-app:
-        source: "../infrastructure/modules/k8s-app"
+      app:
+        source: "../../../infrastructure/modules/k8s-app"
         cluster_name: "${cluster_name}"
         app_name: "${applications:app:app_name}"
         app_chart_path: "${applications:app:app_chart_path}"
